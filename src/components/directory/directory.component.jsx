@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import MenuItem from '../menu-items/menu-items.jsx';
+import MenuItem from '../menu-items/menu-items.component.jsx';
 
-import './index.scss';
+import './directory.component.scss';
 
-export default class Directory extends Component {
+class Directory extends React.Component {
   constructor() {
     super();
 
@@ -56,3 +56,5 @@ export default class Directory extends Component {
     );
   }
 }
+
+export default Directory;
