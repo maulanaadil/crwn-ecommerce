@@ -11,6 +11,7 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx';
 import CheckoutPage from './pages/checkout/checkout.component';
+import NotFound from './pages/404/404.component';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.util';
 import { setCurrentUser } from './redux/user/user.actions';
@@ -61,6 +62,8 @@ class App extends React.Component {
               )
             }
           />
+          <Route path='/404' component={NotFound} />
+          <Redirect from='*' to='/404' />
         </Switch>
       </div>
     );
