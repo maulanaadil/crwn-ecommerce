@@ -17,7 +17,10 @@
     flex-direction: column;
     overflow: scroll;
     overflow-x: hidden;
-    overflow-y: hidden;
+  }
+
+  .cart-items::-webkit-scrollbar {
+    display: none;
   }
 
   .empty-message {
