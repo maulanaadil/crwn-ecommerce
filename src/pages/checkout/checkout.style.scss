@@ -24,8 +24,21 @@
   }
 
   .total {
+    display: flex;
+    flex-direction: column;
     margin-left: auto;
     margin-right: 20px;
     margin-top: 20px;
+
+    span {
+      padding-bottom: 20px;
+    }
+  }
+
+  .text-warning {
+    color: red;
+    text-align: center;
+    margin: 40px auto;
+    font-size: 24px;
   }
 }
