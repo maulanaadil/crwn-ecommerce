@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
-
-import './homepage.style.scss';
+import styled from 'styled-components';
 
 import Directory from '../../components/directory/directory.component.jsx';
+
+const HomepageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 80px;
+`;
 
 class HomePage extends Component {
   render() {
     return (
-      <div className="homepage">
+      <HomepageContainer>
         <Directory />
-      </div>
+      </HomepageContainer>
     );
   }
 }

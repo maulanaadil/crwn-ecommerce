@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled, { css } from 'styled-components';
 
 import {
   clearItemFromCart,
@@ -7,30 +8,73 @@ import {
   removeItem,
 } from '../../redux/cart/cart.actions';
 
-import './checkout-item.style.scss';
-
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   const { imageUrl, name, quantity, price } = cartItem;
+
+  const CheckoutItemContainer = styled.div`
+    width: 100%;
+    min-width: 100px;
+    display: flex;
+    border-bottom: 1px solid darkGray;
+    padding: 15px 0;
+    font-size: 20px;
+    align-items: center;
+  `;
+
+  const ImageContainer = styled.div`
+    width: 23%;
+    padding-right: 15px;
+  `;
+
+  const Image = styled.img.attrs({
+    src: imageUrl,
+    alt: `item ${name}`,
+  })`
+    width: 100%;
+    height: 100%;
+  `;
+
+  const textStyle = css`
+    width: 23%;
+  `;
+
+  const TextName = styled.span`
+    ${textStyle}
+  `;
+  const QuantityContainer = styled.span`
+    ${textStyle}
+    display: flex;
+  `;
+  const TextQuantity = styled.span`
+    margin: 0 20px;
+  `;
+
+  const TextPrice = styled.span`
+    ${textStyle}
+  `;
+
+  const Arrow = styled.div`
+    cursor: pointer;
+  `;
+
+  const RemoveButton = styled.div`
+    cursor: pointer;
+  `;
+
   return (
-    <div className='checkout-item'>
-      <div className='image-container'>
-        <img src={imageUrl} alt={`item ${name}`} />
-      </div>
-      <span className='name'>{name}</span>
-      <span className='quantity'>
-        <div className='arrow' onClick={() => removeItem(cartItem)}>
-          &#10094;
-        </div>
-        <div className='value'>{quantity}</div>
-        <div className='arrow' onClick={() => addItem(cartItem)}>
-          &#10095;
-        </div>
-      </span>
-      <span className='price'>${price}</span>
-      <div className='remove-button' onClick={() => clearItem(cartItem)}>
-        &#10005;
-      </div>
-    </div>
+    <CheckoutItemContainer>
+      <ImageContainer>
+        <Image />
+      </ImageContainer>
+      <TextName>{name}</TextName>
+      <QuantityContainer>
+        <Arrow onClick={() => removeItem(cartItem)}>&#10094;</Arrow>
+        <TextQuantity>{quantity}</TextQuantity>
+        <Arrow onClick={() => addItem(cartItem)}>&#10095;</Arrow>
+      </QuantityContainer>
+      <TextPrice>${price}</TextPrice>
+      <RemoveButton onClick={() => clearItem(cartItem)}>&#10005;</RemoveButton>
+    </CheckoutItemContainer>
   );
 };
 

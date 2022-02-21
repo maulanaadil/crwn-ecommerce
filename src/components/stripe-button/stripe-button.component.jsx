@@ -1,6 +1,8 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
+import Button from '../button/button.component';
+
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
   const publishableKey =
@@ -11,6 +13,13 @@ const StripeCheckoutButton = ({ price }) => {
     alert('Payment successfull');
   };
 
+  const onSubmit = (event) => {
+    if (!price) {
+      alert('Tidak ada checkout');
+      return event.stopPropagation();
+    }
+  };
+
   return (
     <StripeCheckout
       label='Pay Now'
@@ -18,12 +27,15 @@ const StripeCheckoutButton = ({ price }) => {
       billingAddress
       shippingAddress
       image='https://cdn.discordapp.com/attachments/723414734791245868/944178017004052490/crown.png'
-      description={`Your total is $${price}`}
       amount={priceForStripe}
       panelLabel='Pay Now'
       token={onToken}
       stripeKey={publishableKey}
-    />
+    >
+      <Button enabled={price} onClick={onSubmit}>
+        Your total ${price}
+      </Button>
+    </StripeCheckout>
   );
 };
 
