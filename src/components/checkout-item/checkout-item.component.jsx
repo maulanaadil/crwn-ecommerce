@@ -23,10 +23,10 @@ const ImageContainer = styled.div`
   padding-right: 15px;
 `;
 
-const Image = styled.img.attrs({
-  src: (props) => props.imageUrl,
-  alt: (props) => `item ${props.name}`,
-})`
+const Image = styled.img.attrs((props) => ({
+  src: props.src,
+  alt: `item ${props.name}`,
+}))`
   width: 100%;
   height: 100%;
 `;
@@ -64,7 +64,7 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   return (
     <CheckoutItemContainer>
       <ImageContainer>
-        <Image src={imageUrl} alt={name} />
+        <Image src={imageUrl} name={name} />
       </ImageContainer>
       <TextName>{name}</TextName>
       <QuantityContainer>

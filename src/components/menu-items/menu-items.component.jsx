@@ -23,7 +23,7 @@ const BackgroundImage = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
-  background-image: url(${(props) => props.imageUrl}});
+  background-image: url(${(props) => props.imageUrl});
 `;
 
 const ContentContainer = styled.div`
@@ -92,7 +92,7 @@ const Subtitle = styled.div`
 const MenuItem = ({ title, imageUrl, history, linkUrl, match }) => {
   return (
     <MenuItemContainer onClick={() => history.push(`${match.url}${linkUrl}`)}>
-      <BackgroundImage image={imageUrl} />
+      <BackgroundImage imageUrl={imageUrl} />
       <ContentContainer>
         <Title>{title}</Title>
         <Subtitle>SHOP NOW</Subtitle>
