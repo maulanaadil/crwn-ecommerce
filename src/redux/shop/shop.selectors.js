@@ -19,3 +19,8 @@ export const selectCollection = memoize((collectionUrlParam) =>
     collections ? collections[collectionUrlParam] : null
   )
 );
+
+export const selectIsCollectionFething = createSelector(
+  [selectShop],
+  (shop) => shop.isFetching
+);

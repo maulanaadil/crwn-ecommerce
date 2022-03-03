@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { auth } from '../../firebase/firebase.util';
 import CartIcon from '../cart-icon/cart-icon.component';
