@@ -1,11 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../button/button.component';
 
 import { auth, createUserProfileDocument } from '../../firebase/firebase.util';
 
-import './sign-up.style.scss';
+const SignUpContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+`;
+
+const Title = styled.h2`
+  margin: 10px auto;
+`;
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -57,8 +66,8 @@ class SignUp extends React.Component {
     const { displayName, email, password, confirmPassword } = this.state;
 
     return (
-      <div className='sign-up'>
-        <h2 className='title'>I do not have account</h2>
+      <SignUpContainer>
+        <Title>I do not have account</Title>
         <span>Sign up with your email and password</span>
         <form className='sign-up-form' onSubmit={this.handleSubmit}>
           <FormInput
@@ -95,7 +104,7 @@ class SignUp extends React.Component {
           />
           <CustomButton type='submit'>Sign up</CustomButton>
         </form>
-      </div>
+      </SignUpContainer>
     );
   }
 }

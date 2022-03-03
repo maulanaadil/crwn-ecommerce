@@ -1,10 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import FormInput from '../form-input/form-input.component.jsx';
 import Button from '../button/button.component.jsx';
 import { auth, signInWithGoogle } from '../../firebase/firebase.util';
 
-import './sign-in.style.scss';
+const SignInContainer = styled.div`
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -37,9 +47,9 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <div className='sign-in'>
-        <h2 className='#'>I already have an account</h2>
-        <span className='#'>Sign in with your email and password</span>
+      <SignInContainer>
+        <h2>I already have an account</h2>
+        <span>Sign in with your email and password</span>
         <form onSubmit={this.handleSubmit}>
           <FormInput
             name='email'
@@ -57,14 +67,14 @@ class SignIn extends React.Component {
             handleChange={this.handleChange}
             required
           />
-          <div className='buttons'>
-            <Button type='submit'>Sign in</Button>
-            <Button onClick={signInWithGoogle} isGoogleSign>
-              with Google
-            </Button>
-          </div>
         </form>
-      </div>
+        <ButtonContainer>
+          <Button type='submit'>Sign in</Button>
+          <Button onClick={signInWithGoogle} isGoogleSign>
+            with Google
+          </Button>
+        </ButtonContainer>
+      </SignInContainer>
     );
   }
 }
