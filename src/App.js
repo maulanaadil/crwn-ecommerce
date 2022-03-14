@@ -13,9 +13,6 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import CheckoutPage from './pages/checkout/checkout.component';
 import NotFound from './pages/404/404.component';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.util';
-
-import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 class App extends React.Component {
