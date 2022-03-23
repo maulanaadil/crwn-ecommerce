@@ -1,13 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-import Button from '../button/button.component';
-import CartItem from '../cart-item/cart-item.component';
-import { selectCartItems } from '../../redux/cart/cart.selectors';
-import { toggleCartHidden } from '../../redux/cart/cart.actions';
+import Button from "../button/button.component";
+import CartItem from "../cart-item/cart-item.component";
+import { selectCartItems } from "../../redux/cart/cart.selectors";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
 const CartDropdownContainer = styled.div`
   position: absolute;
@@ -57,7 +58,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
     </CartItemsContainer>
     <ButtonCheckout
       onClick={() => {
-        history.push('/checkout');
+        history.push("/checkout");
         dispatch(toggleCartHidden());
       }}
     >
@@ -65,6 +66,12 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
     </ButtonCheckout>
   </CartDropdownContainer>
 );
+
+CartDropdown.propTypes = {
+  cartItems: PropTypes.any,
+  history: PropTypes.string,
+  dispatch: PropTypes.func,
+};
 
 const mapStateToProps = () =>
   createStructuredSelector({

@@ -1,5 +1,6 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
 
 const CartItemContainer = styled.div`
   width: 100%;
@@ -44,5 +45,16 @@ const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
     </ItemDetailWrapper>
   </CartItemContainer>
 );
+
+CartItem.propTypes = {
+  item: PropTypes.objectOf(
+    PropTypes.shape({
+      imageUrl: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      quantity: PropTypes.number,
+    })
+  ).isRequired,
+};
 
 export default CartItem;

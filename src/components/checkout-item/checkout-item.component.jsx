@@ -1,12 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import styled, { css } from 'styled-components';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
 
 import {
   clearItemFromCart,
   addItem,
   removeItem,
-} from '../../redux/cart/cart.actions';
+} from "../../redux/cart/cart.actions";
 
 const CheckoutItemContainer = styled.div`
   width: 100%;
@@ -76,6 +77,20 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
       <RemoveButton onClick={() => clearItem(cartItem)}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );
+};
+
+CheckoutItem.propTypes = {
+  cartItem: PropTypes.objectOf(
+    PropTypes.shape({
+      imageUrl: PropTypes.string,
+      name: PropTypes.string,
+      quantity: PropTypes.number,
+      price: PropTypes.number,
+    })
+  ).isRequired,
+  clearItem: PropTypes.any,
+  addItem: PropTypes.any,
+  removeItem: PropTypes.any,
 };
 
 const mapDispatchToProps = (dispatch) => ({

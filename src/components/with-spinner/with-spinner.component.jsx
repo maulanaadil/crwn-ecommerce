@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const SpinnerOverlay = styled.div`
   height: 60vh;
@@ -32,6 +32,7 @@ const SpinnerContainer = styled.div`
 
 const WithSpinner =
   (WrappedComponent) =>
+  // eslint-disable-next-line react/prop-types
   ({ isLoading, ...otherProps }) => {
     return isLoading ? (
       <SpinnerOverlay>

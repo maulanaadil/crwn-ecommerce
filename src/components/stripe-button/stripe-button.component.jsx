@@ -1,33 +1,34 @@
-import React from 'react';
-import StripeCheckout from 'react-stripe-checkout';
+import React from "react";
+import PropTypes from "prop-types";
+import StripeCheckout from "react-stripe-checkout";
 
-import Button from '../button/button.component';
+import Button from "../button/button.component";
 
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
   const publishableKey =
-    'pk_test_51KUAsHJ2C1L9eO1Ji32cSfNAvtHG4mKtTzh2CZsvYBfnRGwtJzo6oCNDPV5iZIZjwADB4JS9BRyGXvALpdnpKAfB00RA8Wrlda';
+    "pk_test_51KUAsHJ2C1L9eO1Ji32cSfNAvtHG4mKtTzh2CZsvYBfnRGwtJzo6oCNDPV5iZIZjwADB4JS9BRyGXvALpdnpKAfB00RA8Wrlda";
 
-  const onToken = (token) => {
-    alert('Payment successfull');
+  const onToken = () => {
+    alert("Payment successfull");
   };
 
   const onSubmit = (event) => {
     if (!price) {
-      alert('Tidak ada checkout');
+      alert("Tidak ada checkout");
       return event.stopPropagation();
     }
   };
 
   return (
     <StripeCheckout
-      label='Pay Now'
-      name='CRWN Clothing Co.'
+      label="Pay Now"
+      name="CRWN Clothing Co."
       billingAddress
       shippingAddress
-      image='https://cdn.discordapp.com/attachments/723414734791245868/944178017004052490/crown.png'
+      image="https://cdn.discordapp.com/attachments/723414734791245868/944178017004052490/crown.png"
       amount={priceForStripe}
-      panelLabel='Pay Now'
+      panelLabel="Pay Now"
       token={onToken}
       stripeKey={publishableKey}
     >
@@ -36,6 +37,10 @@ const StripeCheckoutButton = ({ price }) => {
       </Button>
     </StripeCheckout>
   );
+};
+
+StripeCheckoutButton.propTypes = {
+  price: PropTypes.number.isRequired,
 };
 
 export default StripeCheckoutButton;

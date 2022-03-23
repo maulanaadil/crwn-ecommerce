@@ -1,19 +1,20 @@
-import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import React from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { createStructuredSelector } from "reselect";
 
-import './App.scss';
+import "./App.scss";
 
-import Header from './components/header/header.component';
+import Header from "./components/header/header.component";
 
-import HomePage from './pages/homepage/homepage.component';
-import ShopPage from './pages/shop/shop.component';
-import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx';
-import CheckoutPage from './pages/checkout/checkout.component';
-import NotFound from './pages/404/404.component';
+import HomePage from "./pages/homepage/homepage.component";
+import ShopPage from "./pages/shop/shop.component";
+import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx";
+import CheckoutPage from "./pages/checkout/checkout.component";
+import NotFound from "./pages/404/404.component";
 
-import { selectCurrentUser } from './redux/user/user.selectors';
+import { selectCurrentUser } from "./redux/user/user.selectors";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -23,31 +24,32 @@ class App extends React.Component {
   }
 
   render() {
+    const { currentUser } = this.props;
     return (
       <div>
         <Header />
         <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route path='/shop' component={ShopPage} />
-          <Route exact path='/checkout' component={CheckoutPage} />
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
           <Route
             exact
-            path='/signin'
+            path="/signin"
             render={() =>
-              this.props.currentUser ? (
-                <Redirect to='/' />
-              ) : (
-                <SignInAndSignUpPage />
-              )
+              currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
             }
           />
-          <Route path='/404' component={NotFound} />
-          <Redirect from='*' to='/404' />
+          <Route path="/404" component={NotFound} />
+          <Redirect from="*" to="/404" />
         </Switch>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  currentUser: PropTypes.any,
+};
 
 const mapStateToProps = () =>
   createStructuredSelector({

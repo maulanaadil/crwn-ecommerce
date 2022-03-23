@@ -1,6 +1,7 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
 
 const MenuItemLargeStyle = css`
   height: 300px;
@@ -11,7 +12,7 @@ const MenuItemDefaultStyle = css`
 `;
 
 const getSizeMenuItem = (props) => {
-  if (props.size === 'large') {
+  if (props.size === "large") {
     return MenuItemLargeStyle;
   }
 
@@ -99,6 +100,14 @@ const MenuItem = ({ title, imageUrl, history, linkUrl, match }) => {
       </ContentContainer>
     </MenuItemContainer>
   );
+};
+
+MenuItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  history: PropTypes.string,
+  linkUrl: PropTypes.string.isRequired,
+  match: PropTypes.object,
 };
 
 export default withRouter(MenuItem);

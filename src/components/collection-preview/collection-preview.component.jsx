@@ -1,9 +1,10 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { withRouter } from "react-router-dom";
 
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
-import CollectionItem from '../collection-item/collection-item.component.jsx';
+import CollectionItem from "../collection-item/collection-item.component.jsx";
 
 const CollectionPreviewContainer = styled.div`
   display: flex;
@@ -35,5 +36,13 @@ const CollectionPreview = ({ title, items, match, history, routeName }) => (
     </Preview>
   </CollectionPreviewContainer>
 );
+
+CollectionPreview.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.object.isRequired,
+  match: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
+  routeName: PropTypes.string.isRequired,
+};
 
 export default withRouter(CollectionPreview);

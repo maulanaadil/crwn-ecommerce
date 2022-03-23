@@ -1,10 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
+/* eslint-disable react/prop-types */
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { connect } from "react-redux";
 
-import { selectCollection } from '../../redux/shop/shop.selectors';
+import { selectCollection } from "../../redux/shop/shop.selectors";
 
-import CollectionItem from '../../components/collection-item/collection-item.component';
+import CollectionItem from "../../components/collection-item/collection-item.component";
 
 const CollectionPageContainer = styled.div`
   display: flex;
@@ -34,6 +36,15 @@ const CollectionPage = ({ collection }) => {
       </Items>
     </CollectionPageContainer>
   );
+};
+
+CollectionPage.propTypes = {
+  collection: PropTypes.objectOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      items: PropTypes.object,
+    })
+  ),
 };
 
 const mapStateToProps = (state, ownProps) => ({
