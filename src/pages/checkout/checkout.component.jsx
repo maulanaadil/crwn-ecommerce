@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import styled from "styled-components";
 import { createStructuredSelector } from "reselect";
 
 import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
@@ -11,41 +12,84 @@ import {
   selectCartTotal,
 } from "../../redux/cart/cart.selectors";
 
-import "./checkout.style.scss";
+const CheckoutPageContainer = styled.div`
+  width: 55%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto 0;
+`;
+
+const CheckoutHeader = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid darkgray;
+
+  &:last-child {
+    width: 8%;
+  }
+`;
+
+const HeaderBlock = styled.div`
+  text-transform: capitalize;
+  width: 23%;
+`;
+
+const TotalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 20px;
+  margin-top: 20px;
+`;
+
+const Total = styled.span`
+  padding-bottom: 20px;
+`;
+
+const TextWarning = styled.div`
+  color: red;
+  text-align: center;
+  margin: 40px auto;
+  font-size: 24px;
+`;
 
 const CheckoutPage = ({ cartItems, total }) => (
-  <div className="checkout-page">
-    <div className="checkout-header">
-      <div className="header-block">
+  <CheckoutPageContainer>
+    <CheckoutHeader>
+      <HeaderBlock>
         <span>Product</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlock>
+      <HeaderBlock>
         <span>Description</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlock>
+      <HeaderBlock>
         <span>Quantity</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlock>
+      <HeaderBlock>
         <span>Price</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlock>
+      <HeaderBlock>
         <span>Remove</span>
-      </div>
-    </div>
+      </HeaderBlock>
+    </CheckoutHeader>
     {cartItems.map((cartItem) => (
       <CheckoutItem key={cartItem.id} cartItem={cartItem} />
     ))}
 
-    <div className="total">
-      <span>TOTAL: ${total}</span>
+    <TotalWrapper>
+      <Total>TOTAL: ${total}</Total>
       <StripeCheckoutButton price={total} />
-    </div>
-    <div className="text-warning">
+    </TotalWrapper>
+    <TextWarning>
       *Please us the following test credit card for payments*
       <br />
       4242 4242 4242 4242 - Exp: 05/22 - CVV: 123
-    </div>
-  </div>
+    </TextWarning>
+  </CheckoutPageContainer>
 );
 
 CheckoutPage.propTypes = {

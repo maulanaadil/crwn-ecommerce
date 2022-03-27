@@ -52,7 +52,6 @@ const Header = ({ currentUser, hidden }) => (
         <OptionLink
           as="div"
           onClick={() => {
-            console.log("clicked");
             auth.signOut();
           }}
         >

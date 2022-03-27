@@ -15,9 +15,15 @@ import CheckoutPage from "./pages/checkout/checkout.component";
 import NotFound from "./pages/404/404.component";
 
 import { selectCurrentUser } from "./redux/user/user.selectors";
+import { checkUserSession } from "./redux/user/user.actions";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
+
+  componentDidMount() {
+    const { checkUserSession } = this.props;
+    checkUserSession();
+  }
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
@@ -49,6 +55,7 @@ class App extends React.Component {
 
 App.propTypes = {
   currentUser: PropTypes.any,
+  checkUserSession: PropTypes.any,
 };
 
 const mapStateToProps = () =>
@@ -56,4 +63,8 @@ const mapStateToProps = () =>
     currentUser: selectCurrentUser,
   });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
