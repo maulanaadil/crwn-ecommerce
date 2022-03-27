@@ -1,12 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import styled from 'styled-components';
+import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-import { toggleCartHidden } from '../../redux/cart/cart.actions';
-import { selectCartItemCount } from '../../redux/cart/cart.selectors';
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
+import { selectCartItemCount } from "../../redux/cart/cart.selectors";
 
-import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
+import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 
 const CartIconContainer = styled.div`
   width: 48px;
@@ -36,6 +37,11 @@ const CartIcon = ({ toggleCartHidden, itemCount }) => (
     <ItemCount>{itemCount}</ItemCount>
   </CartIconContainer>
 );
+
+CartIcon.propTypes = {
+  toggleCartHidden: PropTypes.boolean,
+  itemCount: PropTypes.number,
+};
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),

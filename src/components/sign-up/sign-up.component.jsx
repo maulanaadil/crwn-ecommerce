@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import FormInput from '../form-input/form-input.component';
-import CustomButton from '../button/button.component';
+import FormInput from "../form-input/form-input.component";
+import CustomButton from "../button/button.component";
 
-import { auth, createUserProfileDocument } from '../../firebase/firebase.util';
+import { auth, createUserProfileDocument } from "../../firebase/firebase.util";
 
 const SignUpContainer = styled.div`
   display: flex;
@@ -20,10 +20,10 @@ class SignUp extends React.Component {
     super(props);
 
     this.state = {
-      displayName: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      displayName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     };
   }
 
@@ -33,7 +33,7 @@ class SignUp extends React.Component {
     const { displayName, email, password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
-      alert('password dont match');
+      alert("password dont match");
       return;
     }
 
@@ -46,10 +46,10 @@ class SignUp extends React.Component {
       await createUserProfileDocument(user, { displayName });
 
       this.setState({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
+        displayName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
       });
     } catch (error) {
       console.error(error.message);
@@ -69,40 +69,40 @@ class SignUp extends React.Component {
       <SignUpContainer>
         <Title>I do not have account</Title>
         <span>Sign up with your email and password</span>
-        <form className='sign-up-form' onSubmit={this.handleSubmit}>
+        <form className="sign-up-form" onSubmit={this.handleSubmit}>
           <FormInput
-            type='text'
-            name='displayName'
+            type="text"
+            name="displayName"
             value={displayName}
             onChange={this.handleChange}
-            label='Display Name'
+            label="Display Name"
             required
           />
           <FormInput
-            type='email'
-            name='email'
+            type="email"
+            name="email"
             value={email}
             onChange={this.handleChange}
-            label='Email'
+            label="Email"
             required
           />
           <FormInput
-            type='password'
-            name='password'
+            type="password"
+            name="password"
             value={password}
             onChange={this.handleChange}
-            label='Password'
+            label="Password"
             required
           />
           <FormInput
-            type='password'
-            name='confirmPassword'
+            type="password"
+            name="confirmPassword"
             value={confirmPassword}
             onChange={this.handleChange}
-            label='Confirm Password'
+            label="Confirm Password"
             required
           />
-          <CustomButton type='submit'>Sign up</CustomButton>
+          <CustomButton type="submit">Sign up</CustomButton>
         </form>
       </SignUpContainer>
     );

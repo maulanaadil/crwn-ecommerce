@@ -1,5 +1,6 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React from "react";
+import styled, { css } from "styled-components";
+import PropTypes from "prop-types";
 
 const buttonStyles = css`
   background-color: black;
@@ -52,7 +53,7 @@ const ButtonContainer = styled.button`
   line-height: 50px;
   padding: 0 35px 0 35px;
   font-size: 15px;
-  font-family: 'Inter';
+  font-family: "Inter";
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -63,5 +64,9 @@ const ButtonContainer = styled.button`
 const Button = ({ children, ...props }) => (
   <ButtonContainer {...props}>{children}</ButtonContainer>
 );
+
+Button.propTypes = {
+  children: PropTypes.Any,
+};
 
 export default Button;

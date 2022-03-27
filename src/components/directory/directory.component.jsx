@@ -1,10 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import styled from 'styled-components';
+import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
-import { selectDirectorySections } from '../../redux/directory/directory.selectors.js';
-import MenuItem from '../menu-items/menu-items.component.jsx';
+import { selectDirectorySections } from "../../redux/directory/directory.selectors.js";
+import MenuItem from "../menu-items/menu-items.component.jsx";
 
 const DirectoryContainer = styled.div`
   display: flex;
@@ -20,6 +21,10 @@ const Directory = ({ sections }) => (
     ))}
   </DirectoryContainer>
 );
+
+Directory.propTypes = {
+  sections: PropTypes.object,
+};
 
 const mapDispatchToProps = createStructuredSelector({
   sections: selectDirectorySections,

@@ -1,11 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import styled from 'styled-components';
+import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
-import { selectCollectionsForPreview } from '../../redux/shop/shop.selectors.js';
+import { selectCollectionsForPreview } from "../../redux/shop/shop.selectors.js";
 
-import CollectionPreview from '../collection-preview/collection-preview.component.jsx';
+import CollectionPreview from "../collection-preview/collection-preview.component.jsx";
 
 const CollectionsPreviewContainer = styled.div`
   display: flex;
@@ -19,6 +20,10 @@ const CollectionsOverview = ({ collections }) => (
     ))}
   </CollectionsPreviewContainer>
 );
+
+CollectionsOverview.propTypes = {
+  collections: PropTypes.object.isRequired,
+};
 
 const mapDispatchToProps = () =>
   createStructuredSelector({

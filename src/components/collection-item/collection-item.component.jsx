@@ -1,9 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import styled, { css } from 'styled-components';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
 
-import Button from '../button/button.component';
-import { addItem } from '../../redux/cart/cart.actions';
+import Button from "../button/button.component";
+import { addItem } from "../../redux/cart/cart.actions";
 
 const BackgroundImage = styled.div`
   width: 100%;
@@ -81,6 +82,17 @@ const CollectionItem = ({ item, addItem }) => {
       </Button>
     </CollectionItemContainer>
   );
+};
+
+CollectionItem.propTypes = {
+  item: PropTypes.objectOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      price: PropTypes.number,
+      imageUrl: PropTypes.string,
+    })
+  ).isRequired,
+  addItem: PropTypes.any,
 };
 
 const mapDispatchToProps = (dispatch) => ({

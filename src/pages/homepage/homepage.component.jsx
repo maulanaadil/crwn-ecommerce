@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
 
-import Directory from '../../components/directory/directory.component.jsx';
+import Directory from "../../components/directory/directory.component.jsx";
 
 const HomepageContainer = styled.div`
   display: flex;

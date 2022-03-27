@@ -1,7 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { withRouter } from "react-router-dom";
 
-import CollectionItem from '../collection-item/collection-item.component.jsx';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+
+import CollectionItem from "../collection-item/collection-item.component.jsx";
 
 const CollectionPreviewContainer = styled.div`
   display: flex;
@@ -12,16 +15,18 @@ const CollectionPreviewContainer = styled.div`
 const Title = styled.h1`
   font-size: 28px;
   margin-bottom: 25px;
+  cursor: pointer;
 `;
 
 const Preview = styled.div`
   display: flex;
   justify-content: space-evenly;
 `;
-
-const CollectionPreview = ({ title, items }) => (
+const CollectionPreview = ({ title, items, match, history, routeName }) => (
   <CollectionPreviewContainer>
-    <Title>{title}</Title>
+    <Title onClick={() => history.push(`${match.path}/${routeName}`)}>
+      {title.toUpperCase()}
+    </Title>
     <Preview>
       {items
         .filter((item, index) => index < 4)
@@ -32,4 +37,12 @@ const CollectionPreview = ({ title, items }) => (
   </CollectionPreviewContainer>
 );
 
-export default CollectionPreview;
+CollectionPreview.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.object.isRequired,
+  match: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
+  routeName: PropTypes.string.isRequired,
+};
+
+export default withRouter(CollectionPreview);
