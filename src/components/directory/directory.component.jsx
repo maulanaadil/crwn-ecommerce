@@ -23,7 +23,7 @@ const Directory = ({ sections }) => (
 );
 
 Directory.propTypes = {
-  sections: PropTypes.object,
+  sections: PropTypes.array,
 };
 
 const mapDispatchToProps = createStructuredSelector({

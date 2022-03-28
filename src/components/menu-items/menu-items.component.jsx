@@ -105,7 +105,7 @@ const MenuItem = ({ title, imageUrl, history, linkUrl, match }) => {
 MenuItem.propTypes = {
   title: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
-  history: PropTypes.string,
+  history: PropTypes.object,
   linkUrl: PropTypes.string.isRequired,
   match: PropTypes.object,
 };

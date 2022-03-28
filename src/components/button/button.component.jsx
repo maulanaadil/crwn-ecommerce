@@ -66,7 +66,7 @@ const Button = ({ children, ...props }) => (
 );
 
 Button.propTypes = {
-  children: PropTypes.Any,
+  children: PropTypes.string,
 };
 
 export default Button;

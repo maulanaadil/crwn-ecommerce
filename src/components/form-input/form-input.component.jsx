@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import "./form-input.style.scss";
 
+// TODO: REFACTOR SCSSNYA GAN
+
 const FormInput = ({ handleChange, label, ...otherProps }) => (
   <div className="group">
     <input className="form-input" onChange={handleChange} {...otherProps} />
