@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -22,66 +22,58 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
 `;
 
-class SignIn extends React.Component {
-  constructor(props) {
-    super(props);
+const defaultFormFields = {
+  email: "",
+  password: "",
+};
 
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
+const SignIn = ({ emailSignInStart, googleSignInStart }) => {
+  const [formFields, setFormFields] = useState(defaultFormFields);
+  const { email, password } = formFields;
 
-  handleSubmit = async (event) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormFields({ ...formFields, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const { emailSignInStart } = this.props;
-    const { email, password } = this.state;
 
     emailSignInStart(email, password);
   };
 
-  handleChange = (event) => {
-    const { value, name } = event.target;
-
-    this.setState({ [name]: value });
-  };
-
-  render() {
-    const { googleSignInStart } = this.props;
-
-    return (
-      <SignInContainer>
-        <h2>I already have an account</h2>
-        <span>Sign in with your email and password</span>
-        <form onSubmit={this.handleSubmit}>
-          <FormInput
-            name="email"
-            type="email"
-            label="Email"
-            value={this.state.email}
-            handleChange={this.handleChange}
-            required
-          />
-          <FormInput
-            name="password"
-            type="password"
-            label="Password"
-            value={this.state.password}
-            handleChange={this.handleChange}
-            required
-          />
-          <ButtonContainer>
-            <Button type="submit">Sign in</Button>
-            <Button type="button" onClick={googleSignInStart} isGoogleSign>
-              with Google
-            </Button>
-          </ButtonContainer>
-        </form>
-      </SignInContainer>
-    );
-  }
-}
+  return (
+    <SignInContainer>
+      <h2>I already have an account</h2>
+      <span>Sign in with your email and password</span>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          name="email"
+          type="email"
+          label="Email"
+          value={email}
+          handleChange={handleChange}
+          required
+        />
+        <FormInput
+          name="password"
+          type="password"
+          label="Password"
+          value={password}
+          handleChange={handleChange}
+          required
+        />
+        <ButtonContainer>
+          <Button type="submit">Sign in</Button>
+          <Button type="button" onClick={googleSignInStart} isGoogleSign>
+            with Google
+          </Button>
+        </ButtonContainer>
+      </form>
+    </SignInContainer>
+  );
+};
 
 SignIn.propTypes = {
   emailSignInStart: PropTypes.any,

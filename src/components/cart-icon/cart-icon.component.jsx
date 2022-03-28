@@ -39,7 +39,7 @@ const CartIcon = ({ toggleCartHidden, itemCount }) => (
 );
 
 CartIcon.propTypes = {
-  toggleCartHidden: PropTypes.boolean,
+  toggleCartHidden: PropTypes.func,
   itemCount: PropTypes.number,
 };
 

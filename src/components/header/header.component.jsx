@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createStructuredSelector } from "reselect";
@@ -22,7 +22,7 @@ const HeaderContainer = styled.div`
   margin-bottom: 25px;
 `;
 
-const LogoContainer = styled(Link)`
+const LogoContainer = styled(NavLink)`
   height: auto;
   width: 70px;
   padding: 10px;
@@ -36,9 +36,12 @@ const OptionsContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const OptionLink = styled(Link)`
+const OptionLink = styled(NavLink)`
   padding: 10px 15px;
   cursor: pointer;
+  &.active {
+    color: #696969;
+  }
 `;
 
 const Header = ({ currentUser, hidden, signOutStart }) => (
@@ -48,7 +51,7 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
     </LogoContainer>
     <OptionsContainer>
       <OptionLink to="/shop">SHOP</OptionLink>
-      <OptionLink to="/contact">CONTACT</OptionLink>
+      <OptionLink to="/404">CONTACT</OptionLink>
       {currentUser ? (
         <OptionLink as="div" onClick={signOutStart}>
           SIGN OUT
